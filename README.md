@@ -1,5 +1,7 @@
 # kokodex
 
+## UNDER DEVELOPING
+
 ## Project setup
 ```
 npm install
