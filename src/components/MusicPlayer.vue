@@ -20,7 +20,7 @@ export default defineComponent({
   setup() {
     // 音轨列表
     const tracks = ref([
-      { name: 'Track 1', src: '/public/audios/uzumakinoharu.mp3' },
+      { name: 'Track 1', src: '/audios/uzumakinoharu.mp3' },
       { name: 'Track 2', src: 'http://music.163.com/song/media/outer/url?id=2635812056.mp3' },
     ]);
 
@@ -78,6 +78,8 @@ export default defineComponent({
 audio {
   width: 100%;
   margin-top: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .controls {

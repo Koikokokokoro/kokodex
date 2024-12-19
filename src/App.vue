@@ -1,12 +1,13 @@
 <template>
+  <Background class="bg" :class="{ blurred: isDrawerVisible || isPlayerVisible }"/>
   <div :class="['player', { 'player-visible': isPlayerVisible }]">
     <MusicPlayer />
   </div>
   <div class="app" :class="{ blurred: isDrawerVisible || isPlayerVisible }">
-    <div :class="['overlay', { 'overlay-visible': isDrawerVisible }]" />
+    <div :class="['overlay', { 'overlay-visible': isDrawerVisible || isPlayerVisible }]" />
     <div class="profile-container">
         <img class="avatar" src="./assets/head.jpg" alt="Avatar" />
-        <p class="description">Hi! This is a minimalist personal homepage.</p>
+        <p class="description">Hi! 欢迎来到Koikokokokoro的主页！</p>
     </div>
   </div>
   <!-- 抽屉 -->
@@ -19,9 +20,10 @@
 import { defineComponent, ref, onMounted, onUnmounted } from 'vue';
 import DrawerLinks from './components/DrawerLinks.vue';
 import MusicPlayer from './components/MusicPlayer.vue';
+import Background from './components/Background.vue';
 
 export default defineComponent({
-  components: { DrawerLinks, MusicPlayer },
+  components: { DrawerLinks, MusicPlayer, Background },
   setup() {
     const isDrawerVisible = ref(false);
     const isPlayerVisible = ref(false);
@@ -61,19 +63,35 @@ export default defineComponent({
 </script>
 
 <style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;  /* Windows Edge, IE 浏览器的滚动条隐藏 */
+  scrollbar-width: none;  /* Firefox 浏览器的滚动条隐藏 */
+}
+
+.bg {
+  text-align: center;
+  overflow: hidden;
+  transition: filter 0.5s ease;
+}
+.bg.blurred {
+  filter: blur(5px);
+}
 .app {
   height: 100vh;
   width: 100vw;
   /* background-size: cover; */
   background-position: center;
-  /* color: white; */
   text-align: center;
   overflow: hidden;
   position: relative;
-  background: url("https://www.dmoe.cc/random.php");
   margin: 0;
   padding: 0;
-  backdrop-filter: blur(4px);
+  z-index: 0;
+  /* backdrop-filter: blur(4px); */
 
   transition: filter 0.5s ease;
 }
@@ -104,7 +122,7 @@ export default defineComponent({
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* 头像样式 */
