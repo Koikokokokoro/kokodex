@@ -1,14 +1,14 @@
 <template>
   <div class="player-content">
-    <p>🎵 正在播放: {{ currentTrack.name }}</p>
-    <audio ref="audioPlayer" controls autoplay>
+    <p>🎵 正在播放: {{ currentTrack.name }} by {{ currentTrack.artist }}</p>
+    <audio ref="audioPlayer" controls autoplay=true>
       <source :src="resolveTrackSrc(currentTrack.src)" type="audio/mpeg" />
       您的浏览器不支持音频播放。
     </audio>
-    <div class="controls">
+    <!-- <div class="controls">
       <button @click="prevTrack">上一首</button>
       <button @click="nextTrack">下一首</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -20,8 +20,8 @@ export default defineComponent({
   setup() {
     // 音轨列表
     const tracks = ref([
-      { name: 'Track 1', src: '/audios/uzumakinoharu.mp3' },
-      { name: 'Track 2', src: 'http://music.163.com/song/media/outer/url?id=2635812056.mp3' },
+      { name: 'uzumakinoharu', artist: 'sasakure.UK',src: '/audios/uzumakinoharu.mp3' },
+      // { name: 'Track 2', src: 'http://music.163.com/song/media/outer/url?id=2635812056.mp3' },
     ]);
 
     // 当前音轨索引和音轨
